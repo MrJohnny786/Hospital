@@ -7,8 +7,8 @@ var data = [
     {name: "john",
     lastname:"Damilatis",
     birth:"2/1/2001",
-    general:"I like league of legends"
-    }    
+    general:"Nothing"
+    }
 ]
 
 function seedDB(){
@@ -30,7 +30,7 @@ function seedDB(){
                         {
                            number:'1',
                             doctor:"alex",
-                            disease:"camcer",
+                            disease:"LUL",
                             date:"1/1/1111",
                             treatment:"XD",
                         }, function(err, diagnose){
@@ -45,7 +45,7 @@ function seedDB(){
                 }
             });
         });
-    }); 
+    });
     //add a few comments
 }
 
