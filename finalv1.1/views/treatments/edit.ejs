@@ -1,0 +1,72 @@
+<% include ../partials/header %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/patients/<%= patient_id %>/diagnoses/<%= diagnose_id%>/treatments/<%= treatment._id %>">Πισω</a></li>
+  </ol>
+</nav>
+
+
+
+<div class= "container">
+    <div class="row">
+      <div class="col-sm">
+        <h1 class="text-center display-4 my-4">Επεξεργασία </h1>
+        
+        <form action = "/patients/<%= patient_id %>/diagnoses/<%= diagnose_id %>/treatments/<%= treatment._id %>?_method=PUT"  method = "POST">
+            
+        
+
+        <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Αριθμός Διάγνωσης :</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control"  name = "treatment[number]" id="colFormLabel" value= "<%= treatment.number %>" required minlength="1" maxlength="20">
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Αριθμός Διάγνωσης :</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control"  name = "treatment[disease]" id="colFormLabel" value= "<%= treatment.disease %>" required minlength="1" maxlength="20">
+          </div>
+        </div>
+          
+          <div class="form-group row">
+            <label for="colFormLabel" class="col-sm-4 col-form-label">Ημερομηνία Διάγνωσης :</label>
+            <div class="col-sm-5">
+              <input type="date" class="form-control" name = "treatment[date]" id="colFormLabel" value= "<%= treatment.date %>" required minlength="1" maxlength="20">
+            </div>
+          </div>
+          
+          <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Υπευθυνος Γιατρος :</label>
+          <div class="col-sm-5">
+              <select class="btn btn-secondary dropdown-toggle" class="doc" data-style="btn-info" name="treatment[doc]">
+                <optgroup label="Select Table">
+                  <option name="Γεωργιαδη" value="Γεωργιαδη">Γεωργιαδη</option>
+                  <option name="Αλεφραγκης" value="Αλεφραγκης">Αλεφραγκης</option>
+                  <option name="Ζαχαρακης" value="Ζαχαρακης">Ζαχαρακης</option>
+                </optgroup>
+              </select>
+          </div>
+        </div>
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label" for="exampleTextarea"> Γενικες Σημειωσεις :</label>
+            <div>
+              <textarea class="form-control" name = "treatment[general]" id="exampleTextarea" cols="200" rows="10"><%= treatment.disease %></textarea>
+            </div>
+          </div>
+          
+          <div class="col-md-8 text-center">
+              <button class="btn btn-primary btn-lg btn-block">Υποβολή!</button>
+          </div>
+
+        </form>
+        
+      </div>
+    
+    
+    </div>
+</div>
+
+<% include ../partials/footer %>

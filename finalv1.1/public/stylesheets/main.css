@@ -1,0 +1,11 @@
+
+#delete-form {
+    display: inline;
+}
+
+.clickableRow { cursor: pointer; }
+
+
+body {
+    background-color: lightblue;
+}

@@ -1,0 +1,84 @@
+<% include ../partials/header %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/patients">Ασθενεις</a></li>
+    <li class="breadcrumb-item"><a href="/patients/<%= patient_id %>">Ασθενης</a></li>
+  </ol>
+</nav>
+
+<div>
+    <h1 class="text-center">Πληροφορίες Διάγνωσης <%= %></div></h1>
+</div>
+
+<div class="container">
+    <div class="row ">
+        <div class="container  p-5 ">
+            
+            <div class="row mt-3">
+                <div class="col-sm">Ασθένεια :</div>
+                <div class="col-sm"><%= diagnose.disease %></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm">Ημερομηνία Διάγνωσης :</div>
+                <div class="col-sm"><%= diagnose.date  %></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm">Υπευθυνος Γιατρος :</div>
+                <div class="col-sm"><%= diagnose.doc  %></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm">
+                    <span class="pull-right">
+                <p>
+                    Δημιουργηθηκε απο τον/την : <%= diagnose.alpha.username %>, <%= moment(diagnose.createdAt).fromNow() %>
+                </p>
+            </span>
+                </div>
+            </div>
+            
+            <% if(currentUser && diagnose.alpha.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+            <div class="row mt-3">
+                <p class="col-sm">
+                    <a class="btn btn-warning btn-large" href="/patients/<%=patient_id %>/diagnoses/<%=diagnose._id %>/edit">Επεξεργασία</a>
+                </p>
+            </div>
+            <form action="/patients/<%= patient_id %>/diagnoses/<%= diagnose._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger btn-large">Διαγραφή</button>
+            </form>
+            <% } %>
+            <hr>
+            <div>
+                <h1 class="text-center p-2">Θεραπείες</h1>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope = "col">Αριθμός Θεραπείας :</th>
+                            <th scope = "col">Ημ/νια Θεραπείας  :</th>
+                            <th scope = "col">Υπευθυνος Γιατρος :</th>
+                            <th scope = "col">Δημιουργηθηκε απο :</th>
+                        </tr>
+                    </thead> 
+                    <% diagnose.treatments.forEach(function(treatment){ %>
+                    <tbody >    
+                            <tr>
+                                <td><%= treatment.number %></td>
+                                <td ><a class="alpha" href = "/patients/<%= patient_id %>/diagnoses/<%= diagnose.id %>/treatments/<%=treatment._id %>"><%= treatment.date %></a></td>
+                                <td><a class="alpha" href = "/patients/<%= patient_id %>/diagnoses/<%= diagnose.id %>/treatments/<%=treatment._id %>"><%= treatment.doc %></td>
+                                <td><a class="alpha" href = "/patients/<%= patient_id %>/diagnoses/<%= diagnose.id %>/treatments/<%=treatment._id %>"><%= diagnose.alpha.username %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+            <a class="btn btn-primary btn-large" href="/patients/<%= patient_id %>/diagnoses/<%= diagnose._id %>/treatments/new">Πρόσθεστε Θεραπεία</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>
