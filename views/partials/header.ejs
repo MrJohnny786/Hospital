@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title></title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></link>
+        <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">
+         
+        <style>
+        
+        
+        
+        .clickableRow { cursor: pointer; }   
+        
+        
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            background-color:white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        .alpha{
+            color:black;
+        }
+        }
+</style>
+    </head>
+
+        
+        
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <% if(currentUser){ %>          
+   <a class="navbar-brand" href="/patients">Συνδεδεμενος ως <%= currentUser.username %></a> 
+   <% } %>
+   
+   
+    
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    <% if(!currentUser){ %>  
+        <a class="nav-item nav-link active" href="/">Σύνδεση <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="/register">Εγγραφή</a>
+    <% } else { %>
+        <a class="nav-item nav-link" href="/logout">Αποσύνδεση</a>
+    <% } %>    
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <% if(error && error.length > 0){ %>
+    <div class="alert alert-danger" role "alert">
+        <%= error %>
+    </div>
+    <% } %>
+    <% if(success && success.length > 0){ %>
+    <div class="alert alert-success" role "alert">
+        <%= success %>
+    </div>
+    <% } %>
+
+</div>
+
+
+ 
+        

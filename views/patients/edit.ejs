@@ -1,0 +1,167 @@
+<% include ../partials/header %>
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/patients/<%= p_id %>">Πισω</a></li>
+  </ol>
+</nav>
+
+
+<div class= "container">
+    <div class="row">
+      <div class="col-sm">
+        <h1 class="text-center display-4 my-4">Επεξεργασία <%= patient.lastName %></h1>
+        
+        <form action = "/patients/<%= patient._id %>?_method=PUT"  method = "POST">
+            
+        
+
+        <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Όνομα :</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control"  name = "patient[firstName]" id="colFormLabel" value= "<%= patient.firstName %>" required minlength="1" maxlength="20">
+          </div>
+        </div>
+          
+          <div class="form-group row">
+            <label for="colFormLabel" class="col-sm-4 col-form-label">Επώνυμο :</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" name = "patient[lastName]" id="colFormLabel" value= "<%= patient.lastName %>" required minlength="1" maxlength="20">
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label" for="birthday">Ημερομηνία Γέννησης:</label>
+            <div class="col-sm-5">
+              <input type="date" class="form-control" id="birthday" name="patient[birthday]" value= "<%= moment(patient.birthday).format('YYYY-MM-DD') %>">
+            </div>
+          </div> 
+          
+          <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Κινητο Τηλεφωνο :</label>
+          <div class="col-sm-5">
+            <input type="number" class="form-control"  name = "patient[mPhone]" id="colFormLabel" value= "<%= patient.mPhone %>" required  maxlength="10">
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Σταθερο Τηλεφωνο :</label>
+          <div class="col-sm-5">
+            <input type="number" class="form-control"  name = "patient[sPhone]" id="colFormLabel" value= "<%= patient.sPhone %>" required  maxlength="10">
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Πολη/Χωριο :</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control"  name = "patient[city]" id="colFormLabel" value= "<%= patient.city %>" required  maxlength="50">
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Διευθυνση :</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control"  name = "patient[address]" id="colFormLabel" value= "<%= patient.address %>" required  maxlength="50">
+          </div>
+        </div>
+        
+        
+        
+        <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Ομαδα Αιματος :</label>
+          <div class="col-sm-5">
+              <select class="btn btn-secondary dropdown-toggle" class="bloodType" data-style="btn-info" name="patient[bloodType]">
+                <optgroup label="Select Table">
+                  <option name="<%= patient.bloodType %>" value="<%= patient.bloodType %>"><%= patient.bloodType %></option>
+                  <option name="-" value="-">-</option>
+                  <option name="Α+" value="Α+">Α+</option>
+                  <option name="0+" value="0+">0+</option>
+                  <option name="Β+" value="Β+">Β+</option>
+                  <option name="ΑΒ+" value="ΑΒ+">ΑΒ+</option>
+                  <option name="Α-" value="Α-">Α-</option>
+                  <option name="0-" value="0-">0-</option>
+                  <option name="Β-" value="Β-">Β-</option>
+                  <option name="ΑΒ-" value="ΑΒ-">ΑΒ-</option>
+                </optgroup>
+              </select>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Γιατρος :</label>
+          <div class="col-sm-5">
+              <select class="btn btn-secondary dropdown-toggle" class="doc" data-style="btn-info" name="patient[doc]">
+                <optgroup label="Select Table">
+                  <option name="<%= patient.doc %>" value="<%= patient.doc %>"><%= patient.doc %></option>
+                  <option name="-" value="-">-</option>
+                  <option name="Γεωργιαδη" value="Γεωργιαδη">Γεωργιαδη</option>
+                  <option name="Αλεφραγκης" value="Αλεφραγκης">Αλεφραγκης</option>
+                  <option name="Ζαχαρακης" value="Ζαχαρακης">Ζαχαρακης</option>
+                </optgroup>
+              </select>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Εχετε αλλεργιες ως προς τα τροφιμα η το περιβαλλον ;</label>
+          <div class="col-sm-5">
+              <select class="btn btn-secondary dropdown-toggle" class="alerg1" data-style="btn-info" name="patient[alerg1]">
+                <optgroup label="Select Table">
+                  <option name="<%= patient.alerg1 %>" value="<%= patient.alerg1 %>"><%= patient.alerg1 %></option>
+                  <option name="-" value="-">-</option>
+                  <option name="Ναι" value="Ναι">Ναι</option>
+                  <option name="Οχι" value="Οχι">Οχι</option>
+                </optgroup>
+              </select>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label" for="exampleTextarea">Ποιες οι αλλεργικες αντιδρασεις σας στο περιβαλλον και τα τροφιμα ;</label>
+            <div>
+              <textarea class="form-control" name = "patient[alerg1_text]" id="exampleTextarea" cols="100" rows="10"><%= patient.alerg1_text %></textarea>
+            </div>
+          </div>
+          
+        <div class="form-group row">
+          <label for="colFormLabel" class="col-sm-4 col-form-label">Εχετε αλλεργιες ως προς συγκεκριμενα φαρμακα η φαρμακευτικη αγωγη ;</label>
+          <div class="col-sm-5">
+              <select class="btn btn-secondary dropdown-toggle" class="alerg2" data-style="btn-info" name="patient[alerg2]">
+                <optgroup label="Select Table">
+                  <option name=<%= patient.alerg2 %> value=<%= patient.alerg2 %>><%= patient.alerg2 %></option>
+                  <option name="-" value="-">-</option>
+                  <option name="Ναι" value="Ναι">Ναι</option>
+                  <option name="Οχι" value="Οχι">Οχι</option>
+                </optgroup>
+              </select>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label" for="exampleTextarea">Ποιες οι αλλεργικες αντιδρασεις σας στο περιβαλλον και τα τροφιμα ;</label>
+            <div>
+              <textarea class="form-control" name = "patient[alerg2_text]" id="exampleTextarea" cols="100" rows="10"><%= patient.alerg2_text %></textarea>
+            </div>
+          </div>
+        
+          
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label" for="exampleTextarea">Γενικές σημειώσεις :</label>
+            <div>
+              <textarea class="form-control" name = "patient[general]" id="exampleTextarea" cols="200" rows="10"><%= patient.general %></textarea>
+            </div>
+          </div>
+          <div class="col-md-8 text-center">
+              <button class="btn btn-primary btn-lg btn-block">Submit!</button>
+          </div>
+
+        </form>
+        
+      </div>
+    
+    
+    </div>
+</div>
+
+<% include ../partials/footer %>
